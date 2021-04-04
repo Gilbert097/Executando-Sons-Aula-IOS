@@ -11,6 +11,7 @@ import AVFoundation
 class ViewController: UIViewController, AVAudioPlayerDelegate {
     
     private var player = AVAudioPlayer()
+    @IBOutlet weak var volumeSlider: UISlider!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         do {
             player = try AVAudioPlayer(contentsOf: url)
             player.delegate = self
+            player.volume = volumeSlider.value
         } catch {
             print("Error: \(error.localizedDescription)")
         }
@@ -45,6 +47,9 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         player.currentTime = 0
     }
     
+    @IBAction func sliderChanged(_ sender: UISlider) {
+        player.volume = volumeSlider.value
+    }
     
 }
 

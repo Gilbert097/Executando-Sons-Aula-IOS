@@ -21,6 +21,9 @@
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="5bh-85-T29">
                                         <rect key="frame" x="-2" y="0.0" width="230" height="31"/>
+                                        <connections>
+                                            <action selector="sliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="RrV-bu-Rt4"/>
+                                        </connections>
                                     </slider>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0MP-vK-hdW">
                                         <rect key="frame" x="0.0" y="48" width="226" height="62"/>
@@ -62,6 +65,9 @@
                             <constraint firstItem="ILr-vc-yfF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Xym-uT-Mj2"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="volumeSlider" destination="5bh-85-T29" id="7tv-dN-uXN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
