@@ -10,25 +10,41 @@ import AVFoundation
 
 class ViewController: UIViewController, AVAudioPlayerDelegate {
     
-    var player = AVAudioPlayer()
+    private var player = AVAudioPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeAudioPlayer()
+    }
+    
+    private func initializeAudioPlayer() {
+        guard
+            let path = Bundle.main.path(forResource: "bach", ofType: "mp3")
+        else { return }
+        let url = URL(fileURLWithPath: path)
         
-        if let path = Bundle.main.path(forResource: "bach", ofType: "mp3"){
-            let url = URL(fileURLWithPath: path)
-            
-            do {
-                player = try AVAudioPlayer(contentsOf: url)
-                player.prepareToPlay()
-                player.delegate = self
-                player.play()
-            } catch {
-                print("Error: \(error.localizedDescription)")
-            }
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player.delegate = self
+        } catch {
+            print("Error: \(error.localizedDescription)")
         }
     }
 
-
+    @IBAction func playButtonClick(_ sender: UIButton) {
+        player.prepareToPlay()
+        player.play()
+    }
+    
+    @IBAction func pauseButtonClick(_ sender: UIButton) {
+        player.pause()
+    }
+    
+    @IBAction func stopButtonClick(_ sender: UIButton) {
+        player.stop()
+        player.currentTime = 0
+    }
+    
+    
 }
 
